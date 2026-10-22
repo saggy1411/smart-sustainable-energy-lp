@@ -1,4 +1,4 @@
-function hbar(label,val,max){const pct=(val/max*100).toFixed(1);return `<div class="hbar-row"><span>${label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%"></div></div><span>${val}M</span></div>`;}
+﻿function hbar(label,val,max){const pct=(val/max*100).toFixed(1);return `<div class="hbar-row"><span>${label}</span><div class="hbar-track"><div class="hbar-fill" style="width:${pct}%"></div></div><span>${val}M</span></div>`;}
 
 const metabEl = document.getElementById('metab');
 if (metabEl) {
@@ -16,7 +16,7 @@ if (marketEl) {
 function range(label,entry,senior,scaleMax,showMark){
   const l=(entry/scaleMax*100), w=((senior-entry)/scaleMax*100);
   const mark=showMark?`<div class="pathway-mark" style="left:${32/scaleMax*100}%;background:#e31e24;"></div>`:'';
-  return `<div class="pathway-row"><span>${label}</span><div class="pathway-track"><div class="pathway-fill" style="left:${l}%;width:${w}%"></div>${mark}</div><span>₹${entry}–${senior}L</span></div>`;
+  return `<div class="pathway-row"><span>${label}</span><div class="pathway-track"><div class="pathway-fill" style="left:${l}%;width:${w}%"></div>${mark}</div><span>â‚¹${entry}â€“${senior}L</span></div>`;
 }
 
 const pathwaysEl = document.getElementById('pathways');
@@ -28,12 +28,12 @@ if (pathwaysEl) {
 const expEl = document.getElementById('experience');
 if (expEl) {
   const exp=[["0-2 yrs",2.8],["3-5 yrs",4.5],["6-10 yrs",10.8],["10+ yrs",13]]; const eMax=13;
-  expEl.innerHTML=exp.map(e=>`<div class="vbar" style="height:${(e[1]/eMax*100)}%;background:#e31e24;"><span style="color:#ffffff;font-weight:700;">₹${e[1]}L</span><em style="color:rgba(255,255,255,.8);">${e[0]}</em></div>`).join('');
+  expEl.innerHTML=exp.map(e=>`<div class="vbar" style="height:${(e[1]/eMax*100)}%;background:#e31e24;"><span style="color:#ffffff;font-weight:700;">â‚¹${e[1]}L</span><em style="color:rgba(255,255,255,.8);">${e[0]}</em></div>`).join('');
 }
 
 const citytierEl = document.getElementById('citytier');
 if (citytierEl) {
-  const city=[["Metro — Mumbai, Delhi, Bengaluru",6,12],["Tier 2 — Pune, Hyderabad (SSPU here)",5,9],["Smaller cities — Jaipur, Lucknow",3,5.5]];
+  const city=[["Metro â€” Mumbai, Delhi, Bengaluru",6,12],["Tier 2 â€” Pune, Hyderabad (SSPU here)",5,9],["Smaller cities â€” Jaipur, Lucknow",3,5.5]];
   citytierEl.innerHTML=city.map(c=>range(c[0],c[1],c[2],14,false)).join('');
 }
 
@@ -318,3 +318,15 @@ if (citytierEl) {
     });
   }
 })();
+
+  // Pre-footer and Floating CTA Smooth Scroll
+  document.addEventListener('click', function(e) {
+    const trigger = e.target.closest('.btn-prefooter-primary, .btn-prefooter-secondary, .floating-admissions-link, .legal-link, .social-icon-btn');
+    if (trigger) {
+      e.preventDefault();
+      const formEl = document.getElementById('get-in-touch-form');
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
